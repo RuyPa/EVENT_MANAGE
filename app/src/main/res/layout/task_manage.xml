@@ -304,7 +304,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/cleanBox"
+                                android:id="@+id/cleanBox1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingTop="30dp"
@@ -348,7 +348,7 @@
                                     android:layout_marginEnd="15dp"
                                     android:src="@drawable/more"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/cleanBox"
+                                    app:layout_constraintRight_toRightOf="@id/cleanBox1"
                                     app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -356,7 +356,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/orangerborder"
+                        android:id="@+id/orangerborder1"
                         android:layout_width="match_parent"
                         android:layout_height="59dp"
                         android:layout_marginLeft="31dp"
@@ -367,7 +367,7 @@
                         app:layout_constraintTop_toTopOf="@id/box1">
 
                         <TextView
-                            android:id="@+id/textView26"
+                            android:id="@+id/textView266"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
@@ -561,7 +561,7 @@
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/cleanBox"
+                        android:id="@+id/cleanBox2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp">
