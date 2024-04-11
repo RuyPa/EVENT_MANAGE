@@ -15,5 +15,5 @@ public interface ApiService {
     Call<List<BasicEventDto>> getBasicEventData();
 
     @GET("/api/v1/events")
-    Call<EventDto> getEventById(@Query("id")String eventId);
+    Call<EventDto> getEventById(@Query("id")Integer eventId);
 }

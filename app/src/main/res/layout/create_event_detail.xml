@@ -61,28 +61,38 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/imgbox"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="31dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="31dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_width="350dp"
+                        android:layout_height="175dp"
+                        android:clipToOutline="true"
+                        tools:ignore="MissingConstraints">
 
-                        <ImageView
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imageView5"
-                            android:layout_width="match_parent"
-                            android:layout_height="246dp"
-                            android:src="@drawable/ptit"
+                            android:layout_width="350dp"
+                            android:layout_height="175dp"
+                            android:src="@drawable/choose_file"
+                            app:shapeAppearanceOverlay="@style/circular"
+                            android:scaleType="fitXY"
+                            android:clipToOutline="true"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/updateThumbnailbox"
                             android:layout_width="150dp"
                             android:layout_height="34dp"
                             android:layout_marginTop="35dp"
-                            android:layout_marginEnd="60dp"
+                            android:layout_marginEnd="25dp"
                             android:background="@drawable/white_border_shadow"
+                            android:visibility="visible"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -102,57 +112,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="15dp"
                                 android:text="update banner"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/thumbnail"
-                        android:layout_width="156dp"
-                        android:layout_height="156dp"
-                        android:layout_marginTop="150dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/constraintLayout">
-
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="156dp"
-                            android:layout_height="156dp"
-                            android:src="@drawable/thumbnail"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout4"
-                            android:layout_width="150dp"
-                            android:layout_height="34dp"
-                            android:background="@drawable/white_border_shadow"
-                            app:layout_constraintBottom_toBottomOf="@id/thumbnail"
-                            app:layout_constraintLeft_toLeftOf="@id/thumbnail"
-                            app:layout_constraintRight_toRightOf="@id/thumbnail"
-                            tools:layout_editor_absoluteX="5dp">
-
-                            <ImageView
-                                android:id="@+id/camera2"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/camera"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/textView90"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="15dp"
-                                android:text="update thumbnail"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -182,7 +141,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/fill_text_event"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -192,14 +151,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/eventnamefill">
 
-                        <TextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text='PTIT tour'
                             android:textSize="15sp"
+                            android:hint="Fill event name"
+                            android:background="@null"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -226,7 +186,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/fillstarttext"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -242,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="2024-03-18 06:00 AM"
+                            android:hint="Click on calendar icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -253,6 +213,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="2dp"
                             android:src="@drawable/calendar"
+                            android:visibility="visible"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -279,7 +240,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/endtext"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -294,8 +255,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
+                            android:hint="Click on calendar icon"
                             android:fontFamily="sans-serif-medium"
-                            android:text="2024-03-18 06:00 PM"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -306,6 +267,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="2dp"
                             android:src="@drawable/calendar"
+                            android:visibility="visible"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -332,7 +294,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/wherefill"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -342,37 +304,21 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/wheretext">
 
-                        <TextView
-                            android:id="@+id/textView10"
-                            android:layout_width="282dp"
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="10dp"
+                            android:hint="Kiểu sự kiện"
+                            android:textSize="15dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="Host event at a physical location and manage check-ins at the door"
+                            android:background="@null"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintLeft_toLeftOf="parent"/>
 
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Venue"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/imageView4"
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="2dp"
-                            android:src="@drawable/unfold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -395,7 +341,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/venuefill"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -405,13 +351,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/venuetext">
 
-                        <TextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="PTIT"
+                            android:hint="Tên nơi bạn tổ chức"
+                            android:textSize="15dp"
+                            android:background="@null"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -438,7 +386,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cityfill"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -448,13 +396,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/citytext">
 
-                        <TextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="Km, Nguyễn Trãi, Hà Đông, Hà Nội"
+                            android:hint="Địa chỉ sự kiện"
+                            android:textSize="15dp"
+                            android:background="@null"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -481,7 +431,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/addressfill"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginEnd="31dp"
                         android:background="@drawable/white_border_shadow"
@@ -489,16 +439,18 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
-                        <TextView
-                            android:id="@+id/textView13"
-                            android:layout_width="wrap_content"
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextViewCity"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:hint="Thành phố nơi bạn tổ chức"
+                            android:textSize="15dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="Hà Nội"
+                            android:background="@null"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintLeft_toLeftOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -506,7 +458,8 @@
                     android:id="@+id/catebox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/catetext"
@@ -522,7 +475,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/catefill"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -627,7 +580,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/destext">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/textView14"
                             android:layout_width="309dp"
                             android:layout_height="66dp"
@@ -635,7 +588,6 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="A tour for students to go and search about PTIT, a chance to see many things in a high education school"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -662,7 +614,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/videofill"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -672,13 +624,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/videotext">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="https://www.youtube.com/watch?vkjd"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -705,7 +656,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/linkfill"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -715,13 +666,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linktext">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/textView17"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="https://portal.ptit.edu.vn/"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -824,5 +774,56 @@
             </LinearLayout>
         </ScrollView>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calendarr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/anywhere"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/calendarFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="200dp"
+            android:background="@drawable/white_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/calendarVieww"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:background="@color/black" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

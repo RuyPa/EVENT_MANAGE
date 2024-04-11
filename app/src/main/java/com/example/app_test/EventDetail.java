@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 import dto.EventDto;
 
-public class CreateDetail extends AppCompatActivity {
+public class EventDetail extends AppCompatActivity {
 
     TextView title ;
     ImageView eventImage ;
@@ -118,7 +118,7 @@ public class CreateDetail extends AppCompatActivity {
             backEventIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(CreateDetail.this, MainActivity.class);
+                    Intent intent = new Intent(EventDetail.this, MainActivity.class);
                     startActivity(intent);
                 }
             });
@@ -130,7 +130,7 @@ public class CreateDetail extends AppCompatActivity {
         backEventIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateDetail.this, MainActivity.class);
+                Intent intent = new Intent(EventDetail.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -141,7 +141,7 @@ public class CreateDetail extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateDetail.this, MainActivity.class);
+                Intent intent = new Intent(EventDetail.this, MainActivity.class);
                 intent.putExtra("showEvent", true);
                 startActivity(intent);
             }
@@ -172,7 +172,7 @@ public class CreateDetail extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateDetail.this, MainActivity.class);
+                Intent intent = new Intent(EventDetail.this, MainActivity.class);
                 startActivity(intent);
             }
         });

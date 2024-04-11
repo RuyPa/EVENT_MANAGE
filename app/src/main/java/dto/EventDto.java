@@ -2,57 +2,27 @@ package dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-public class EventDto {
+public class EventDto implements Serializable {
 
-    @SerializedName("id")
     private Integer id;
-
-    @SerializedName("name")
     private String name;
-
-    @SerializedName("startDate")
     private Date startDate;
-
-    @SerializedName("endDate")
     private Date endDate;
-
-    @SerializedName("startTime")
     private String startTime;
-
-    @SerializedName("endTime")
     private String endTime;
-
-    @SerializedName("location")
     private String location;
-
-    @SerializedName("address")
     private String address;
-
-    @SerializedName("city")
     private String city;
-
-    @SerializedName("des")
     private String des;
-
-    @SerializedName("eventVideo")
     private String eventVideo;
-
-    @SerializedName("registrationType")
     private String registrationType;
-
-    @SerializedName("websiteLink")
     private String websiteLink;
-
-    @SerializedName("imgUrl")
     private String imgUrl;
-
-    @SerializedName("categories")
     private List<EventCategoryDto> categories;
-
-    @SerializedName("userDto")
     private UserDto userDto;
 
     public EventDto() {

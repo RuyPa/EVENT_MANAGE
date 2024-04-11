@@ -35,6 +35,8 @@ android {
 }
 
 
+
+
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -51,6 +53,8 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.squareup.okhttp3:okhttp:3.2.0")
     implementation("com.squareup.moshi:moshi:1.15.0")
-
+    implementation ("com.github.dhaval2404:imagepicker:2.1")
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation("commons-io:commons-io:2.6")
 
 }

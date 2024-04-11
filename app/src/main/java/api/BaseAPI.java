@@ -8,7 +8,7 @@ public class BaseAPI {
 
     public static Retrofit getRetrofitInstance(){
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://mobile-app-server-2byn.onrender.com/")
+                .baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;

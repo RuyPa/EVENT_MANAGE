@@ -1,8 +1,9 @@
 package dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UserDto {
+public class UserDto implements Serializable {
     private String id;
     private String username;
     private String password;

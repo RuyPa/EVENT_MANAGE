@@ -2,10 +2,11 @@ package dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class BasicEventDto {
+public class BasicEventDto implements Serializable {
 
     Integer id;
     String name;
