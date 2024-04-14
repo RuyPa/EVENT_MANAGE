@@ -131,7 +131,7 @@
                         android:id="@+id/eventnamefill"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Event Name *"
+                        android:text="Tên sự kiện *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/fill_text_event"
@@ -176,7 +176,7 @@
                         android:id="@+id/starttext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Start Date and Time *"
+                        android:text="Ngày bắt đầu *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/fillstarttext"
@@ -230,7 +230,7 @@
                         android:id="@+id/endfill"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="End Date and Time *"
+                        android:text="Ngày bắt đầu *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/endtext"
@@ -284,17 +284,17 @@
                         android:id="@+id/wheretext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Where will your event take place? *"
+                        android:text="Kiểu sự kiện? *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/wherefill"
                         app:layout_constraintLeft_toLeftOf="@id/wherefill"
                         app:layout_constraintTop_toTopOf="@id/wherebox" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <RadioGroup
                         android:id="@+id/wherefill"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -304,20 +304,46 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/wheretext">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/autoCompleteTextView"
+                        <RadioButton
+                            android:id="@+id/indoor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:hint="Kiểu sự kiện"
-                            android:textSize="15dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:background="@null"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"/>
+                            android:text="Trong nhà" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <RadioButton
+                            android:id="@+id/outdoor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ngoài trời" />
+                    </RadioGroup>
+
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/wherefill"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_marginStart="31dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_marginEnd="31dp"-->
+<!--                        android:background="@drawable/white_border_shadow"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/wheretext">-->
+
+<!--                        <AutoCompleteTextView-->
+<!--                            android:id="@+id/autoCompleteTextView"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:hint="Kiểu sự kiện được tổ chức"-->
+<!--                            android:textSize="15dp"-->
+<!--                            android:fontFamily="sans-serif-medium"-->
+<!--                            android:background="@null"-->
+<!--                            app:layout_constraintTop_toTopOf="parent"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintLeft_toLeftOf="parent"/>-->
+
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -331,7 +357,7 @@
                         android:id="@+id/venuetext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Location Name *"
+                        android:text="Tên địa điểm tổ chức *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/venuefill"
@@ -376,7 +402,7 @@
                         android:id="@+id/citytext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address *"
+                        android:text="Địa chỉ *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/cityfill"
@@ -421,7 +447,7 @@
                         android:id="@+id/addresstext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="City *"
+                        android:text="Thành phố *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/addressfill"
@@ -465,7 +491,7 @@
                         android:id="@+id/catetext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Event Category *"
+                        android:text="Loại sự kiện *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/catefill"
@@ -475,7 +501,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/catefill"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -485,68 +511,21 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/catetext">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/virtual"
-                            android:layout_width="128dp"
-                            android:layout_height="29dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@drawable/white_border_shadow"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/checkboxContainer"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="12dp"
+                            android:hint="Thành phố nơi bạn tổ chức"
+                            android:textSize="15dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:background="@null"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageView7"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="8dp"
-                                android:src="@drawable/cancel"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/textView15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="sans-serif-medium"
-                                android:text="virtual event"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="68dp"
-                            android:layout_height="29dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@drawable/white_border_shadow"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toRightOf="@id/virtual"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageViewwer"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="8dp"
-                                android:src="@drawable/cancel"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/textView15d"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="sans-serif-medium"
-                                android:text="kids"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                            app:layout_constraintLeft_toLeftOf="parent">
+                        </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -560,7 +539,7 @@
                         android:id="@+id/destext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Description *"
+                        android:text="Mô tả *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/destfill"
@@ -580,14 +559,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/destext">
 
-                        <EditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView14"
                             android:layout_width="309dp"
                             android:layout_height="66dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            android:hint="Mô tả sự kiện"
+                            android:textSize="15dp"
                             android:fontFamily="sans-serif-medium"
+                            android:background="@null"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -604,7 +586,7 @@
                         android:id="@+id/videotext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Event Video *"
+                        android:text="Link video *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/videofill"
@@ -624,12 +606,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/videotext">
 
-                        <EditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
+                            android:hint="Link video sự kiện nếu có"
+                            android:textSize="15dp"
                             android:fontFamily="sans-serif-medium"
+                            android:background="@null"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -646,7 +631,7 @@
                         android:id="@+id/linktext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Website Link *"
+                        android:text="Link fanpage *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/linkfill"
@@ -666,12 +651,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linktext">
 
-                        <EditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView17"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
+                            android:hint="Link fanpage sự kiện nếu có"
+                            android:textSize="15dp"
                             android:fontFamily="sans-serif-medium"
+                            android:background="@null"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />

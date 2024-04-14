@@ -1,8 +1,6 @@
 package com.example.app_test;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -11,41 +9,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CalendarView;
-import android.widget.EditText;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
-import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
-import dto.EventDto;
+import avtInterface.OnOptionSelectedListener;
+import constant.CreateEventConst;
 
 public class CreateEventDetail extends AppCompatActivity{
 
@@ -77,6 +61,8 @@ public class CreateEventDetail extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_event_detail);
 
+        setCate();
+
         onClickCalendar();
 
         getInforFromCalendar(calendar1, 6);
@@ -85,11 +71,8 @@ public class CreateEventDetail extends AppCompatActivity{
 
         onClickAnyWhere();
 
-        try {
-            createEvent();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
+        createEvent();
 
 //        hideDraftBoxAndShowUpdate();
 //
@@ -100,6 +83,22 @@ public class CreateEventDetail extends AppCompatActivity{
 //        onClickUpdateButton();
 //
 //        checkSeeDetail();
+    }
+
+    private void setCate() {
+        String cate[] = {"Trẻ em", "Thực tế"};
+        LinearLayout checkboxContainer = findViewById(R.id.checkboxContainer);
+        for (String category : cate) {
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setText(category);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 0, 0, 16); // Thiết lập margin bottom là 16 pixels
+            checkBox.setLayoutParams(params);
+            checkboxContainer.addView(checkBox);
+        }
     }
 
     private void insertImage() {
@@ -196,7 +195,7 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-    private void createEvent() throws Exception {
+    private void createEvent() {
 
         title = findViewById(R.id.textView3);
         title.setText("Create Event");
@@ -204,9 +203,26 @@ public class CreateEventDetail extends AppCompatActivity{
         TextInputEditText eventNameEdit = findViewById(R.id.textView5);
         String eventName = eventNameEdit.getText().toString();
 
-        enumTypeRegistration();
+//        enumTypeRegistration();
 
         provinceData();
+
+        TextInputEditText desEdit = findViewById(R.id.textView14);
+        String des = desEdit.getText().toString();
+
+        TextInputEditText linkVidEdit = findViewById(R.id.textView18);
+        String linkVid = linkVidEdit.getText().toString();
+
+        TextInputEditText linkWebEdit = findViewById(R.id.textView17);
+        String linkWeb = linkWebEdit.getText().toString();
+
+        final String[] eventType = {""};
+        onRadioClickView(new OnOptionSelectedListener() {
+            @Override
+            public void onOptionSelected(String selectedOption) {
+                eventType[0] = selectedOption;
+            }
+        });
 //
 //        EditText startDateTimeEdit = findViewById(R.id.textView6);
 //        String startDateTime = startDateTimeEdit.getText().toString();
@@ -237,13 +253,31 @@ public class CreateEventDetail extends AppCompatActivity{
 
     }
 
-    private void provinceData() throws Exception {
+    public void onRadioClickView(OnOptionSelectedListener listener){
+        RadioGroup radioGroup = findViewById(R.id.wherefill);
+        final RadioButton indoorRadioButton = findViewById(R.id.indoor);
+        final RadioButton outdoorRadioButton = findViewById(R.id.outdoor);
+
+        final String[] selectedOption = {""};
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.indoor) {
+                    listener.onOptionSelected("Trong nhà");
+                } else if (checkedId == R.id.outdoor) {
+                    listener.onOptionSelected("Ngoài trời");
+                }
+            }
+        });
+    }
+
+    private void provinceData() {
 
         AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextViewCity);
 
         autoCompleteTextView.setInputType(InputType.TYPE_NULL);
 
-        String[] options = progressProvinceData();
+        String[] options = CreateEventConst.provinces;
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
         autoCompleteTextView.setAdapter(adapter);
@@ -263,42 +297,30 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-    private String[] progressProvinceData() throws Exception {
-        String exampleRequest = FileUtils.readFileToString(new File("com/example/app_test/province.json"), StandardCharsets.UTF_8);
-        Log.i("Joke", exampleRequest);
-        String[] array = {exampleRequest};
-        return array;
-    }
-
-    public static String readFileAsString(String file)throws Exception
-    {
-        return new String(Files.readAllBytes(Paths.get(file)));
-    }
-
-    private void enumTypeRegistration() {
-        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
-
-        autoCompleteTextView.setInputType(InputType.TYPE_NULL);
-
-        String[] options = new String[]{"indoor", "outdoor"};
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
-        autoCompleteTextView.setAdapter(adapter);
-
-        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCompleteTextView.showDropDown();
-            }
-        });
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = adapter.getItem(position).toString();
-                Toast.makeText(CreateEventDetail.this, item, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void enumTypeRegistration() {
+//        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
+//
+//        autoCompleteTextView.setInputType(InputType.TYPE_NULL);
+//
+//        String[] options = new String[]{"indoor", "outdoor"};
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
+//        autoCompleteTextView.setAdapter(adapter);
+//
+//        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                autoCompleteTextView.showDropDown();
+//            }
+//        });
+//        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String item = adapter.getItem(position).toString();
+//                Toast.makeText(CreateEventDetail.this, item, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private void checkSeeDetail() {
         boolean extra = getIntent().getBooleanExtra("backToHome", false);
