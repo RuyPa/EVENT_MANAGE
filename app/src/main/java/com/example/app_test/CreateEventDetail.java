@@ -1,60 +1,97 @@
 package com.example.app_test;
 
+import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileUtils;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
+import adapter.CustomBaseListEventAdapter;
+import api.ApiService;
+import api.BaseAPI;
 import avtInterface.OnOptionSelectedListener;
 import constant.CreateEventConst;
+import dto.BasicEventDto;
+import dto.CategoryDto;
+import dto.EventDto;
+import dto.UserDto;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CreateEventDetail extends AppCompatActivity{
 
 
     TextView title ;
     ImageView eventImage ;
-    TextView eventName;
-    TextView startDateTime;
-    TextView endDateTime ;
-    TextView type ;
-    TextView location ;
-    TextView address;
-    TextView city;
-    TextView description ;
-    TextView eventVideo ;
-    TextView websiteLink ;
+    TextInputEditText eventName;
+    TextView startDate;
+    TextView endDate;
+    TextView startTimeText;
+    TextView endTime ;
+    String type ;
+    TextInputEditText location ;
+    TextInputEditText address;
+    AutoCompleteTextView city;
+    TextInputEditText description ;
+    TextInputEditText eventVideo ;
+    TextInputEditText websiteLink ;
     Calendar calendar1;
     Calendar calendar2;
-    ConstraintLayout cateBox;
     ConstraintLayout createBox ;
     ConstraintLayout updateThumbnaibox;
     CalendarView calendarView;
     ConstraintLayout calendarLayout;
+    CalendarView calendarView2;
+    ConstraintLayout calendarLayout2;
     ConstraintLayout getUpdateThumbnaibox;
     ImageView getImageView5;
+    List<CategoryDto> categoryDtoEdits = new ArrayList<>();
+
+    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +100,21 @@ public class CreateEventDetail extends AppCompatActivity{
 
         setCate();
 
-        onClickCalendar();
+        onClickCalendar1();
 
-        getInforFromCalendar(calendar1, 6);
+        getInforFromCalendar(calendar1);
+
+        onClickCalendar2();
+
+        getInforFromCalendar2(calendar2);
+        
+        setStartTime();
+
+        setEndTime();
 
         insertImage();
 
         onClickAnyWhere();
-
 
         createEvent();
 
@@ -78,19 +122,86 @@ public class CreateEventDetail extends AppCompatActivity{
 //
 //        onClickBack();
 //
-//        onClickCreate();
+        onClickCreate();
 //
 //        onClickUpdateButton();
 //
 //        checkSeeDetail();
     }
 
+    private void setStartTime() {
+
+        startTimeText = findViewById(R.id.starttimetextview);
+        ImageView selectDateTimeButton = findViewById(R.id.time1);
+        selectDateTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDateTimePicker();
+            }
+        });
+    }
+
+    private void showDateTimePicker() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        // Cập nhật TextView với ngày và giờ được chọn
+                        startTimeText.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, true);
+
+        timePickerDialog.show();
+    }
+
+    private void setEndTime() {
+
+        endTime = findViewById(R.id.endtimetextview);
+        ImageView selectDateTimeButton = findViewById(R.id.time2);
+        selectDateTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDateTimePicker2();
+            }
+        });
+    }
+
+    private void showDateTimePicker2() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                // Cập nhật TextView với ngày và giờ được chọn
+                endTime.setText(hourOfDay + ":" + minute);
+            }
+        }, hour, minute, true);
+
+        timePickerDialog.show();
+    }
+
     private void setCate() {
-        String cate[] = {"Trẻ em", "Thực tế"};
+        List<CategoryDto> categoryDtos = new ArrayList<>();
+        categoryDtos.add(new CategoryDto(5,"kids"));
+        categoryDtos.add(new CategoryDto(6, "virtual"));
         LinearLayout checkboxContainer = findViewById(R.id.checkboxContainer);
-        for (String category : cate) {
+        for (CategoryDto categoryDto: categoryDtos) {
             CheckBox checkBox = new CheckBox(this);
-            checkBox.setText(category);
+            checkBox.setText(categoryDto.getName());
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        categoryDtoEdits.add(new CategoryDto(categoryDto.getId()));
+                    } else {
+                        categoryDtoEdits.removeIf(dto -> dto.getId().equals(categoryDto.getId()));
+                    }
+                    Log.i("Joke", String.valueOf(categoryDtoEdits.size()));
+                }
+            });
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -110,9 +221,9 @@ public class CreateEventDetail extends AppCompatActivity{
             public void onClick(View v) {
 
                 ImagePicker.with(CreateEventDetail.this)
-                        .crop()	    			//Crop image(Optional), Check Customization for more option
-                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
                         .start();
             }
         });
@@ -122,15 +233,54 @@ public class CreateEventDetail extends AppCompatActivity{
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        Uri uri = data.getData();
-//        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.border_top);
-//        getImageView5.setMaxWidth(350);
-//        getImageView5.setMaxHeight(175);
-//        getImageView5.setBackground(drawable);
 //        getImageView5.setImageURI(uri);
+//
+//        super.onActivityResult(requestCode, resultCode, data);
+//        String imagePath = getPathFromUri(uri);
+//        // Thêm đường dẫn ảnh vào builder
+//        if (imagePath != null) {
+//            File imageFile = new File(imagePath);
+//            RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+//            builder.addFormDataPart("file", imageFile.getName(), requestBody);
+//        }
 //    }
 
-    private void onClickCalendar() {
-        ImageView calendarIcon = findViewById(R.id.calendar1);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            Log.i("Joke", "onActivityResult: " +uri.toString());
+            Log.i("Joke", "onActivityResult: " +getPathFromUri(uri));
+                getImageView5.setImageURI(uri);
+                String imagePath = getPathFromUri(uri);
+
+                    File imageFile = new File(uri.getPath());
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
+                    builder.addFormDataPart("file", imageFile.getName(), requestBody);
+        }
+    }
+
+    private String getPathFromUri(Uri uri) {
+        String path = null;
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            if (columnIndex != -1) {
+                path = cursor.getString(columnIndex);
+            }
+            cursor.close();
+        }
+        return path;
+    }
+
+
+    private boolean isStartDateTimeSelected = true;
+
+
+    private void onClickCalendar1() {
+        ImageView calendarIcon = findViewById(R.id.calendarr1);
         calendarLayout = findViewById(R.id.calendarr);
 
         calendarIcon.setOnClickListener(new View.OnClickListener() {
@@ -141,24 +291,31 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-    private void getInforFromCalendar(Calendar calendar, int calendarId) {
+    private void getInforFromCalendar(Calendar calendar) {
         calendarView = findViewById(R.id.calendarView);
         calendar1 = Calendar.getInstance();
 
         setDate(calendar1);
         getDate();
 
+        handleDateChange();
+    }
+
+    private void handleDateChange() {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Toast.makeText(CreateEventDetail.this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
-                if(calendarId == 6){
-                    startDateTime = findViewById(R.id.textView6);
+                TextView dateTimeTextView;
+                if (isStartDateTimeSelected) {
+                    startDate = findViewById(R.id.textView6);
+                    startDate.setText(year+"-"+month+"-"+dayOfMonth);
                 } else {
-                    startDateTime = findViewById(R.id.textView7);
+                    endDate = findViewById(R.id.textView7);
+                    endDate.setText(year+"-"+month+"-"+dayOfMonth);
                 }
-                startDateTime.setText(year+"-"+month+"-"+dayOfMonth);
                 calendarLayout.setVisibility(View.GONE);
+                isStartDateTimeSelected = !isStartDateTimeSelected;
             }
         });
     }
@@ -185,6 +342,52 @@ public class CreateEventDetail extends AppCompatActivity{
         calendarView.setDate(milli);
     }
 
+
+    private void onClickCalendar2() {
+        ImageView calendarIcon = findViewById(R.id.calendarr2);
+        calendarLayout2 = findViewById(R.id.calendarr);
+
+        calendarIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendarLayout2.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private void getInforFromCalendar2(Calendar calendar) {
+        calendarView2 = findViewById(R.id.calendarView);
+        calendar2 = Calendar.getInstance();
+
+        setDate2(calendar2);
+        getDate2();
+
+        handleDateChange();
+    }
+
+    void getDate2(){
+        long date = calendarView2.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd", Locale.getDefault());
+        calendar2.setTimeInMillis(date);
+        String selected_date = simpleDateFormat.format(calendar2.getTime());
+//        Toast.makeText(this, selected_date, Toast.LENGTH_SHORT).show();
+
+    }
+
+    void setDate2(Calendar calendar){
+
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+
+        calendar2.set(Calendar.YEAR, year);
+        calendar2.set(Calendar.MONTH, month);
+        calendar2.set(Calendar.DAY_OF_MONTH, day);
+        long milli = calendar2.getTimeInMillis();
+        calendarView2.setDate(milli);
+    }
+
+
     private void onClickAnyWhere(){
         ConstraintLayout anywhere = findViewById(R.id.anywhere);
         anywhere.setOnClickListener(new View.OnClickListener() {
@@ -200,29 +403,29 @@ public class CreateEventDetail extends AppCompatActivity{
         title = findViewById(R.id.textView3);
         title.setText("Create Event");
 
-        TextInputEditText eventNameEdit = findViewById(R.id.textView5);
-        String eventName = eventNameEdit.getText().toString();
-
-//        enumTypeRegistration();
+        eventName = findViewById(R.id.textView5);
+        location = findViewById(R.id.textView11);
+        address = findViewById(R.id.textView12);
 
         provinceData();
 
-        TextInputEditText desEdit = findViewById(R.id.textView14);
-        String des = desEdit.getText().toString();
+        description = findViewById(R.id.textView14);
 
-        TextInputEditText linkVidEdit = findViewById(R.id.textView18);
-        String linkVid = linkVidEdit.getText().toString();
+        eventVideo = findViewById(R.id.textView18);
 
-        TextInputEditText linkWebEdit = findViewById(R.id.textView17);
-        String linkWeb = linkWebEdit.getText().toString();
+        websiteLink = findViewById(R.id.textView17);
 
         final String[] eventType = {""};
         onRadioClickView(new OnOptionSelectedListener() {
             @Override
             public void onOptionSelected(String selectedOption) {
                 eventType[0] = selectedOption;
+                type = eventType[0];
             }
         });
+
+
+
 //
 //        EditText startDateTimeEdit = findViewById(R.id.textView6);
 //        String startDateTime = startDateTimeEdit.getText().toString();
@@ -273,22 +476,22 @@ public class CreateEventDetail extends AppCompatActivity{
 
     private void provinceData() {
 
-        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextViewCity);
+        city = findViewById(R.id.autoCompleteTextViewCity);
 
-        autoCompleteTextView.setInputType(InputType.TYPE_NULL);
+        city.setInputType(InputType.TYPE_NULL);
 
         String[] options = CreateEventConst.provinces;
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
-        autoCompleteTextView.setAdapter(adapter);
+        city.setAdapter(adapter);
 
-        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+        city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                autoCompleteTextView.showDropDown();
+                city.showDropDown();
             }
         });
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = adapter.getItem(position).toString();
@@ -297,30 +500,6 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-//    private void enumTypeRegistration() {
-//        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
-//
-//        autoCompleteTextView.setInputType(InputType.TYPE_NULL);
-//
-//        String[] options = new String[]{"indoor", "outdoor"};
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
-//        autoCompleteTextView.setAdapter(adapter);
-//
-//        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                autoCompleteTextView.showDropDown();
-//            }
-//        });
-//        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String item = adapter.getItem(position).toString();
-//                Toast.makeText(CreateEventDetail.this, item, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
     private void checkSeeDetail() {
         boolean extra = getIntent().getBooleanExtra("backToHome", false);
@@ -352,11 +531,74 @@ public class CreateEventDetail extends AppCompatActivity{
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateEventDetail.this, MainActivity.class);
-                intent.putExtra("showEvent", true);
-                startActivity(intent);
+                EventDto eventDto = new EventDto();
+
+                String name = eventName.getText().toString();
+                String startTime = startTimeText.getText().toString();
+                String endTimeText = endTime.getText().toString();
+                String startDateText = startDate.getText().toString();
+                String endDateText = endDate.getText().toString();
+                String eventTypeText = type;
+                String eventLocationText = location.getText().toString();
+                String eventAddressText = address.getText().toString();
+                String cityText = city.getText().toString();
+                String des = description.getText().toString();
+                String linkVid = eventVideo.getText().toString();
+                String linkWeb = websiteLink.getText().toString();
+                UserDto userDto = new UserDto(1);
+
+
+                builder.addFormDataPart("name", name);
+                builder.addFormDataPart("startDate", startDateText);
+                builder.addFormDataPart("endDate", endDateText);
+                builder.addFormDataPart("startTime", startTime);
+                builder.addFormDataPart("endTime", endTimeText);
+                builder.addFormDataPart("location", eventLocationText);
+                builder.addFormDataPart("address", eventAddressText);
+                builder.addFormDataPart("city", cityText);
+                builder.addFormDataPart("des", des);
+                builder.addFormDataPart("eventVideo", linkVid);
+                builder.addFormDataPart("websiteLink", linkWeb);
+                builder.addFormDataPart("registrationType", eventTypeText);
+                builder.addFormDataPart("userDto.id", String.valueOf(userDto.getId()));
+
+                for(int i = 0; i< categoryDtoEdits.size(); i++){
+                    builder.addFormDataPart("categories[" + String.valueOf(i) + "].categoryDto.id"
+                            , String.valueOf(categoryDtoEdits.get(i).getId()));
+                }
+
+                callAPI(builder.build());
             }
         });
+    }
+
+    private void callAPI(RequestBody requestBody) {
+        fixDelay();
+
+        Retrofit retrofit = BaseAPI.getRetrofitInstance();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ResponseBody> call = apiService.createEvent(requestBody);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                ResponseBody eventDtoList = response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("Joke", "Error fetching joke: " + t.getMessage());
+            }
+        });
+    }
+
+
+    private static void fixDelay() {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(300, TimeUnit.SECONDS) // Adjust the timeout duration as needed
+                .readTimeout(300, TimeUnit.SECONDS)
+                .build();
     }
 
     private void hideDraftBoxAndShowUpdate() {

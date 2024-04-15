@@ -202,13 +202,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="sans-serif-medium"
-                            android:hint="Click on calendar icon"
+                            android:hint="Bấm vào biểu tượng lịch"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/calendar1"
+                            android:id="@+id/calendarr1"
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="2dp"
@@ -217,6 +217,61 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/starttimebox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/starttimetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giờ bắt đầu *"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/fillstarttimetext"
+                        app:layout_constraintLeft_toLeftOf="@id/fillstarttimetext"
+                        app:layout_constraintTop_toTopOf="@id/starttimebox" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fillstarttimetext"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="31dp"
+                        android:background="@drawable/white_border_shadow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/starttimetext">
+
+                        <TextView
+                            android:id="@+id/starttimetextview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:hint="Bấm vào biểu tượng đồng hồ"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/time1"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="2dp"
+                            android:src="@drawable/time"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -230,7 +285,7 @@
                         android:id="@+id/endfill"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ngày bắt đầu *"
+                        android:text="Ngày kết thúc *"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/endtext"
@@ -255,14 +310,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:hint="Click on calendar icon"
+                            android:hint="Bấm vào biểu tượng lịch"
                             android:fontFamily="sans-serif-medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/calendar2"
+                            android:id="@+id/calendarr2"
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="2dp"
@@ -271,6 +326,61 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/endtimebox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/endtimetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giờ kết thúc *"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/fillendtimetext"
+                        app:layout_constraintLeft_toLeftOf="@id/fillendtimetext"
+                        app:layout_constraintTop_toTopOf="@id/endtimebox" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fillendtimetext"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="31dp"
+                        android:background="@drawable/white_border_shadow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/endtimetext">
+
+                        <TextView
+                            android:id="@+id/endtimetextview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:hint="Bấm vào biểu tượng đồng hồ"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/time2"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="2dp"
+                            android:src="@drawable/time"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -459,11 +569,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="31dp"
+                        android:layout_marginTop="40dp"
                         android:layout_marginEnd="31dp"
                         android:background="@drawable/white_border_shadow"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteTextViewCity"
@@ -549,7 +660,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/destfill"
                         android:layout_width="match_parent"
-                        android:layout_height="260dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="31dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="31dp"
@@ -562,16 +673,17 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textView14"
                             android:layout_width="309dp"
-                            android:layout_height="66dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:hint="Mô tả sự kiện"
+                            android:layout_marginBottom="10dp"
+                            android:hint="Mô tả sự kiện (tối đa 150 từ)"
                             android:textSize="15dp"
                             android:fontFamily="sans-serif-medium"
                             android:background="@null"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:singleLine="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

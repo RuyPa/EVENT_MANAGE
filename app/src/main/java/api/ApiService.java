@@ -6,8 +6,12 @@ import java.util.List;
 import dto.BasicEventDto;
 import dto.EventDto;
 import dto.TestDto;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -16,4 +20,7 @@ public interface ApiService {
 
     @GET("/api/v1/events")
     Call<EventDto> getEventById(@Query("id")Integer eventId);
+
+    @POST("/api/v1/events")
+    Call<ResponseBody> createEvent(@Body RequestBody requestBody);
 }
