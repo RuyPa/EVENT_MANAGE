@@ -5,24 +5,19 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
-import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -34,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -41,17 +37,17 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import adapter.CustomBaseListEventAdapter;
 import api.ApiService;
 import api.BaseAPI;
 import avtInterface.OnOptionSelectedListener;
 import constant.CreateEventConst;
-import dto.BasicEventDto;
 import dto.CategoryDto;
+import dto.EventCategoryDto;
 import dto.EventDto;
 import dto.UserDto;
 import okhttp3.MediaType;
@@ -64,10 +60,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class CreateEventDetail extends AppCompatActivity{
+public class UpdateEvent extends AppCompatActivity {
 
     TextView title ;
-    ImageView eventImage ;
     TextInputEditText eventName;
     TextView startDate;
     TextView endDate;
@@ -93,26 +88,26 @@ public class CreateEventDetail extends AppCompatActivity{
     List<CategoryDto> categoryDtoEdits = new ArrayList<>();
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
     List<CategoryDto> categoryDtos = new ArrayList<>();
+    EventDto eventUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.create_event_detail);
+
+        getEventFromExtra();
+        
+        hideDraftBoxAndShowUpdate();
+
+        findAllElementById();
+
+        setInforDefault();
 
         callAPIGetAllCate();
 
-        onClickCalendar1();
-
-        getInforFromCalendar(calendar1);
-
-        onClickCalendar2();
-
-        getInforFromCalendar2(calendar2);
-        
-        setStartTime();
-
-        setEndTime();
+        workWithDateTime();
 
         insertImage();
 
@@ -120,20 +115,72 @@ public class CreateEventDetail extends AppCompatActivity{
 
         createEvent();
 
-//        hideDraftBoxAndShowUpdate();
-//
         onClickBack();
-//
-        onClickCreate();
-//
-//        onClickUpdateButton();
-//
-//        checkSeeDetail();
+
+        onClickUpdateButton();
+    }
+
+    private void setInforDefault() {
+
+        title.setText("Update Event");
+        eventName.setText(eventUpdate.getName());
+        location.setText(eventUpdate.getLocation());
+        address.setText(eventUpdate.getAddress());
+        address.setText(eventUpdate.getAddress());
+        eventVideo.setText(eventUpdate.getEventVideo());
+        websiteLink.setText(eventUpdate.getWebsiteLink());
+        description.setText(eventUpdate.getDes());
+        city.setText(eventUpdate.getCity());
+        startDate.setText(convertDate(eventUpdate.getStartDate()));
+        endDate.setText(convertDate(eventUpdate.getEndDate()));
+        endTime.setText(eventUpdate.getEndTime());
+        startTimeText.setText(eventUpdate.getStartTime());
+        Glide.with(this)
+                .load(eventUpdate.getImgUrl())
+                .into(getImageView5);
+    }
+
+    private void findAllElementById() {
+        title = findViewById(R.id.textView3);
+        eventName = findViewById(R.id.textView5);
+        location = findViewById(R.id.textView11);
+        address = findViewById(R.id.textView12);
+        description = findViewById(R.id.textView14);
+        eventVideo = findViewById(R.id.textView18);
+        websiteLink = findViewById(R.id.textView17);
+        city = findViewById(R.id.autoCompleteTextViewCity);
+        startDate = findViewById(R.id.textView6);
+        endDate = findViewById(R.id.textView7);
+        endTime = findViewById(R.id.endtimetextview);
+        startTimeText = findViewById(R.id.starttimetextview);
+        getImageView5 = findViewById(R.id.imageView5);
+    }
+
+    private String convertDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
+    }
+
+    private void getEventFromExtra() {
+        eventUpdate = (EventDto) getIntent().getSerializableExtra("eventDto");
+    }
+
+    private void workWithDateTime() {
+        onClickCalendar1();
+
+        getInforFromCalendar(calendar1);
+
+        onClickCalendar2();
+
+        getInforFromCalendar2(calendar2);
+
+        setStartTime();
+
+        setEndTime();
     }
 
     private void setStartTime() {
 
-        startTimeText = findViewById(R.id.starttimetextview);
         ImageView selectDateTimeButton = findViewById(R.id.time1);
         selectDateTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,19 +195,19 @@ public class CreateEventDetail extends AppCompatActivity{
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        // Cập nhật TextView với ngày và giờ được chọn
-                        startTimeText.setText(hourOfDay + ":" + minute);
-                    }
-                }, hour, minute, true);
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                // Cập nhật TextView với ngày và giờ được chọn
+                startTimeText.setText(hourOfDay + ":" + minute);
+            }
+        }, hour, minute, true);
 
         timePickerDialog.show();
     }
 
     private void setEndTime() {
 
-        endTime = findViewById(R.id.endtimetextview);
+
         ImageView selectDateTimeButton = findViewById(R.id.time2);
         selectDateTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +239,14 @@ public class CreateEventDetail extends AppCompatActivity{
         for (CategoryDto categoryDto: categoryDtos) {
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(categoryDto.getName());
+
+            boolean isChecked = eventUpdate.getCategories().stream()
+                            .anyMatch(dto -> dto.getCategoryDto().getName().equals(categoryDto.getName()));
+            if(isChecked){
+                checkBox.setChecked(isChecked);
+                categoryDtoEdits.add(new CategoryDto(categoryDto.getId()));
+            }
+
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -225,7 +280,6 @@ public class CreateEventDetail extends AppCompatActivity{
             @Override
             public void onResponse(Call<List<CategoryDto>> call, Response<List<CategoryDto>> response) {
                 categoryDtos.addAll(response.body());
-
                 setCate();
             }
 
@@ -238,13 +292,11 @@ public class CreateEventDetail extends AppCompatActivity{
 
     private void insertImage() {
         getUpdateThumbnaibox = findViewById(R.id.updateThumbnailbox);
-        getImageView5 = findViewById(R.id.imageView5);
-
         getUpdateThumbnaibox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ImagePicker.with(CreateEventDetail.this)
+                ImagePicker.with(UpdateEvent.this)
                         .crop()
                         .compress(1024)
                         .maxResultSize(1080, 1080)
@@ -293,13 +345,11 @@ public class CreateEventDetail extends AppCompatActivity{
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Toast.makeText(CreateEventDetail.this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateEvent.this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
                 TextView dateTimeTextView;
                 if (isStartDateTimeSelected) {
-                    startDate = findViewById(R.id.textView6);
                     startDate.setText(year+"-"+month+"-"+dayOfMonth);
                 } else {
-                    endDate = findViewById(R.id.textView7);
                     endDate.setText(year+"-"+month+"-"+dayOfMonth);
                 }
                 calendarLayout.setVisibility(View.GONE);
@@ -388,16 +438,7 @@ public class CreateEventDetail extends AppCompatActivity{
 
     private void createEvent() {
 
-        title = findViewById(R.id.textView3);
-        title.setText("Create Event");
-        eventName = findViewById(R.id.textView5);
-        location = findViewById(R.id.textView11);
-        address = findViewById(R.id.textView12);
         provinceData();
-        description = findViewById(R.id.textView14);
-        eventVideo = findViewById(R.id.textView18);
-        websiteLink = findViewById(R.id.textView17);
-
         final String[] eventType = {""};
         onRadioClickView(new OnOptionSelectedListener() {
             @Override
@@ -413,6 +454,14 @@ public class CreateEventDetail extends AppCompatActivity{
         final RadioButton indoorRadioButton = findViewById(R.id.indoor);
         final RadioButton outdoorRadioButton = findViewById(R.id.outdoor);
 
+        if (eventUpdate.getRegistrationType().equals("Trong nhà")) {
+            indoorRadioButton.setChecked(true);
+            type = "Trong nhà";
+        } else{
+            outdoorRadioButton.setChecked(true);
+            type = "Ngoài trời";
+        }
+
         final String[] selectedOption = {""};
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -427,8 +476,6 @@ public class CreateEventDetail extends AppCompatActivity{
     }
 
     private void provinceData() {
-
-        city = findViewById(R.id.autoCompleteTextViewCity);
 
         city.setInputType(InputType.TYPE_NULL);
 
@@ -447,7 +494,7 @@ public class CreateEventDetail extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = adapter.getItem(position).toString();
-                Toast.makeText(CreateEventDetail.this, item, Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateEvent.this, item, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -458,18 +505,38 @@ public class CreateEventDetail extends AppCompatActivity{
         backEventIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateEventDetail.this, MainActivity.class);
+                Intent intent = new Intent(UpdateEvent.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void onClickCreate() {
-        ConstraintLayout createButton = findViewById(R.id.create_button);
-        createButton.setOnClickListener(new View.OnClickListener() {
+    private static void fixDelay() {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(300, TimeUnit.SECONDS) // Adjust the timeout duration as needed
+                .readTimeout(300, TimeUnit.SECONDS)
+                .build();
+    }
+
+    private void hideDraftBoxAndShowUpdate() {
+        ConstraintLayout createBox = findViewById(R.id.createBox);
+        createBox.setVisibility(View.GONE);
+        showUpdateBox();
+    }
+
+    private void showUpdateBox() {
+        ConstraintLayout updateBox = findViewById(R.id.updatebox);
+        updateBox.setVisibility(View.VISIBLE);
+    }
+
+    private void onClickUpdateButton(){
+        ConstraintLayout updateButton = findViewById(R.id.updatebutton);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventDto eventDto = new EventDto();
+
+
+
 
                 String name = eventName.getText().toString();
                 String startTime = startTimeText.getText().toString();
@@ -485,16 +552,19 @@ public class CreateEventDetail extends AppCompatActivity{
                 String linkWeb = websiteLink.getText().toString();
                 UserDto userDto = new UserDto(1);
 
-
+                builder.addFormDataPart("id", String.valueOf(eventUpdate.getId()));
+                builder.addFormDataPart("imgUrl", String.valueOf(eventUpdate.getImgUrl()));
                 builder.addFormDataPart("name", name);
                 builder.addFormDataPart("startDate", startDateText);
                 builder.addFormDataPart("endDate", endDateText);
+
                 builder.addFormDataPart("startTime", startTime);
                 builder.addFormDataPart("endTime", endTimeText);
                 builder.addFormDataPart("location", eventLocationText);
                 builder.addFormDataPart("address", eventAddressText);
                 builder.addFormDataPart("city", cityText);
                 builder.addFormDataPart("des", des);
+
                 builder.addFormDataPart("eventVideo", linkVid);
                 builder.addFormDataPart("websiteLink", linkWeb);
                 builder.addFormDataPart("registrationType", eventTypeText);
@@ -505,27 +575,28 @@ public class CreateEventDetail extends AppCompatActivity{
                             , String.valueOf(categoryDtoEdits.get(i).getId()));
                 }
 
-                callAPI(builder.build());
+                callAPIUpdate(builder.build());
             }
         });
     }
 
-    private void callAPI(RequestBody requestBody) {
+    private void callAPIUpdate(RequestBody requestBody) {
+        Log.i("Joke", "onClick: " +"update");
+
         fixDelay();
 
         Retrofit retrofit = BaseAPI.getRetrofitInstance();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ResponseBody> call = apiService.createEvent(requestBody);
+        Call<ResponseBody> call = apiService.updateEvent(requestBody);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                int code = response.code();
-                AlertDialog.Builder builder = new AlertDialog.Builder(CreateEventDetail.this);
-                builder.setMessage("Thành công!")
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateEvent.this);
+                builder.setMessage("Cập nhật thành công!")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // Xử lý khi người dùng nhấn nút OK
                                 backToEventManage();
                             }
                         });
@@ -540,46 +611,9 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-
-    private static void fixDelay() {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(300, TimeUnit.SECONDS) // Adjust the timeout duration as needed
-                .readTimeout(300, TimeUnit.SECONDS)
-                .build();
-    }
-
-    private void hideDraftBoxAndShowUpdate() {
-
-        boolean showEvent = getIntent().getBooleanExtra("hideDraftBox", false);
-        if (showEvent) {
-            ConstraintLayout createBox = findViewById(R.id.createBox);
-            if (createBox.getVisibility() == View.VISIBLE) {
-                createBox.setVisibility(View.GONE);
-                showUpdateBox();
-            }
-        }
-    }
-
-    private void showUpdateBox() {
-        ConstraintLayout updateBox = findViewById(R.id.updatebox);
-        if (updateBox.getVisibility() == View.GONE) {
-            updateBox.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void onClickUpdateButton(){
-        ConstraintLayout updateButton = findViewById(R.id.updatebutton);
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CreateEventDetail.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     private void backToEventManage() {
-        Intent intent = new Intent(CreateEventDetail.this, MainActivity.class);
+        Intent intent = new Intent(UpdateEvent.this, MainActivity.class);
         startActivity(intent);
     }
 }
+

@@ -14,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -31,4 +32,7 @@ public interface ApiService {
 
     @GET("api/v1/categories")
     Call<List<CategoryDto>> getAllCate();
+
+    @PUT("/api/v1/events")
+    Call<ResponseBody> updateEvent(@Body RequestBody requestBody);
 }

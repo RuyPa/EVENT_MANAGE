@@ -29,6 +29,7 @@ import com.example.app_test.MainActivity;
 import com.example.app_test.R;
 import com.example.app_test.ScheduleManage;
 import com.example.app_test.TaskManage;
+import com.example.app_test.UpdateEvent;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -68,6 +69,7 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
     private Dialog dialog;
     private Dialog dialogConfirm;
     private Dialog dialogSuccess;
+    private EventDto eventDtoUpdate;
 
     public CustomBaseListEventAdapter(Activity activity, List<BasicEventDto> eventDtoList){
         this.eventName = eventDtoList.stream()
@@ -234,6 +236,16 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
                         dialog.show();
 
                         ConstraintLayout deleteButton = dialog.findViewById(R.id.deletebutton);
+
+                        ConstraintLayout editButton = dialog.findViewById(R.id.editbutton);
+
+                        editButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                callAPIGetDetail(position);
+                            }
+                        });
+
                         deleteButton.setOnClickListener(new View.OnClickListener() {
 
                             @Override
@@ -270,6 +282,34 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
                         });
                     }
                 });
+            }
+        });
+    }
+
+    private void callAPIGetDetail(Integer position) {
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(300, TimeUnit.SECONDS) // Adjust the timeout duration as needed
+                .readTimeout(300, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = BaseAPI.getRetrofitInstance();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<EventDto> call = apiService.getEventById(eventId.get(position));
+        call.enqueue(new Callback<EventDto>() {
+            @Override
+            public void onResponse(Call<EventDto> call, Response<EventDto> response) {
+                eventDtoUpdate = response.body();
+                Intent intent = new Intent(context, UpdateEvent.class);
+                intent.putExtra("eventDto", eventDtoUpdate);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<EventDto> call, Throwable t) {
+                Log.e("Joke", "Error fetching joke: " + t.getMessage());
             }
         });
     }

@@ -40,6 +40,7 @@
         <activity android:name=".ListEventView" />
         <activity android:name=".EventDetail"/>
         <activity android:name=".CreateEventDetail"/>
+        <activity android:name=".UpdateEvent"/>
     </application>
 
 </manifest>
