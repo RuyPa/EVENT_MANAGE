@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // Set adapter here inside onResponse
                 ListView listView = findViewById(R.id.list_event_view);
-                CustomBaseListEventAdapter adapter = new CustomBaseListEventAdapter(getApplicationContext(), eventDtoList);
+//                CustomBaseListEventAdapter adapter = new CustomBaseListEventAdapter(getApplicationContext(), eventDtoList);
+                CustomBaseListEventAdapter adapter = new CustomBaseListEventAdapter(MainActivity.this, eventDtoList);
                 listView.setAdapter(adapter);
             }
 

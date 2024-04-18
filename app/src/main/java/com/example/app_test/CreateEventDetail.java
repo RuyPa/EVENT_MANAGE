@@ -1,7 +1,9 @@
 package com.example.app_test;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -90,15 +92,16 @@ public class CreateEventDetail extends AppCompatActivity{
     ConstraintLayout getUpdateThumbnaibox;
     ImageView getImageView5;
     List<CategoryDto> categoryDtoEdits = new ArrayList<>();
-
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+    List<CategoryDto> categoryDtos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_event_detail);
 
-        setCate();
+        callAPIGetAllCate();
 
         onClickCalendar1();
 
@@ -120,7 +123,7 @@ public class CreateEventDetail extends AppCompatActivity{
 
 //        hideDraftBoxAndShowUpdate();
 //
-//        onClickBack();
+        onClickBack();
 //
         onClickCreate();
 //
@@ -184,10 +187,9 @@ public class CreateEventDetail extends AppCompatActivity{
     }
 
     private void setCate() {
-        List<CategoryDto> categoryDtos = new ArrayList<>();
-        categoryDtos.add(new CategoryDto(5,"kids"));
-        categoryDtos.add(new CategoryDto(6, "virtual"));
+
         LinearLayout checkboxContainer = findViewById(R.id.checkboxContainer);
+        Log.i("Joke", String.valueOf(categoryDtos.size()));
         for (CategoryDto categoryDto: categoryDtos) {
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(categoryDto.getName());
@@ -206,10 +208,33 @@ public class CreateEventDetail extends AppCompatActivity{
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            params.setMargins(0, 0, 0, 16); // Thiết lập margin bottom là 16 pixels
+            params.setMargins(0, 0, 0, 16);
             checkBox.setLayoutParams(params);
             checkboxContainer.addView(checkBox);
         }
+    }
+
+    private void callAPIGetAllCate() {
+
+        fixDelay();
+
+        Retrofit retrofit = BaseAPI.getRetrofitInstance();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<List<CategoryDto>> call = apiService.getAllCate();
+        call.enqueue(new Callback<List<CategoryDto>>() {
+            @Override
+            public void onResponse(Call<List<CategoryDto>> call, Response<List<CategoryDto>> response) {
+                categoryDtos.addAll(response.body());
+
+                setCate();
+            }
+
+            @Override
+            public void onFailure(Call<List<CategoryDto>> call, Throwable t) {
+                Log.e("Joke", "Error fetching joke: " + t.getMessage());
+            }
+        });
     }
 
     private void insertImage() {
@@ -229,55 +254,19 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Uri uri = data.getData();
-//        getImageView5.setImageURI(uri);
-//
-//        super.onActivityResult(requestCode, resultCode, data);
-//        String imagePath = getPathFromUri(uri);
-//        // Thêm đường dẫn ảnh vào builder
-//        if (imagePath != null) {
-//            File imageFile = new File(imagePath);
-//            RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-//            builder.addFormDataPart("file", imageFile.getName(), requestBody);
-//        }
-//    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
-            Log.i("Joke", "onActivityResult: " +uri.toString());
-            Log.i("Joke", "onActivityResult: " +getPathFromUri(uri));
-                getImageView5.setImageURI(uri);
-                String imagePath = getPathFromUri(uri);
-
-                    File imageFile = new File(uri.getPath());
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
-                    builder.addFormDataPart("file", imageFile.getName(), requestBody);
+            getImageView5.setImageURI(uri);
+            File imageFile = new File(uri.getPath());
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
+            builder.addFormDataPart("file", imageFile.getName(), requestBody);
         }
     }
-
-    private String getPathFromUri(Uri uri) {
-        String path = null;
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        if (cursor != null && cursor.moveToFirst()) {
-            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            if (columnIndex != -1) {
-                path = cursor.getString(columnIndex);
-            }
-            cursor.close();
-        }
-        return path;
-    }
-
 
     private boolean isStartDateTimeSelected = true;
-
 
     private void onClickCalendar1() {
         ImageView calendarIcon = findViewById(R.id.calendarr1);
@@ -402,17 +391,12 @@ public class CreateEventDetail extends AppCompatActivity{
 
         title = findViewById(R.id.textView3);
         title.setText("Create Event");
-
         eventName = findViewById(R.id.textView5);
         location = findViewById(R.id.textView11);
         address = findViewById(R.id.textView12);
-
         provinceData();
-
         description = findViewById(R.id.textView14);
-
         eventVideo = findViewById(R.id.textView18);
-
         websiteLink = findViewById(R.id.textView17);
 
         final String[] eventType = {""};
@@ -423,37 +407,6 @@ public class CreateEventDetail extends AppCompatActivity{
                 type = eventType[0];
             }
         });
-
-
-
-//
-//        EditText startDateTimeEdit = findViewById(R.id.textView6);
-//        String startDateTime = startDateTimeEdit.getText().toString();
-//
-//        EditText endDateTimeEdit = findViewById(R.id.textView7);
-//        String endDateTime = endDateTimeEdit.getText().toString();
-//
-//        EditText typeEdit = findViewById(R.id.textView9);
-//        String type = typeEdit.getText().toString();
-//
-//        EditText locationEdit = findViewById(R.id.textView11);
-//        String location = locationEdit.getText().toString();
-//
-//        EditText addressEdit = findViewById(R.id.textView12);
-//        String address = addressEdit.getText().toString();
-//
-//        EditText cityEdit = findViewById(R.id.textView13);
-//        String city = cityEdit.getText().toString();
-//
-//        EditText descriptionEdit = findViewById(R.id.textView14);
-//        String description = descriptionEdit.getText().toString();
-//
-//        EditText eventVideoEdit = findViewById(R.id.textView18);
-//        String eventVideo = eventVideoEdit.getText().toString();
-//
-//        EditText websiteEdit = findViewById(R.id.textView17);
-//        String website = websiteEdit.getText().toString();
-
     }
 
     public void onRadioClickView(OnOptionSelectedListener listener){
@@ -500,20 +453,6 @@ public class CreateEventDetail extends AppCompatActivity{
         });
     }
 
-
-    private void checkSeeDetail() {
-        boolean extra = getIntent().getBooleanExtra("backToHome", false);
-        if(extra){
-            ImageView backEventIcon = findViewById(R.id.backtodraft);
-            backEventIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(CreateEventDetail.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
-    }
 
     public void onClickBack() {
         ImageView backEventIcon = findViewById(R.id.backtodraft);
@@ -582,8 +521,17 @@ public class CreateEventDetail extends AppCompatActivity{
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                ResponseBody eventDtoList = response.body();
-
+                int code = response.code();
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreateEventDetail.this);
+                builder.setMessage("Thành công!")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // Xử lý khi người dùng nhấn nút OK
+                                backToEventManage();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
 
             @Override
@@ -629,5 +577,10 @@ public class CreateEventDetail extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+    }
+
+    private void backToEventManage() {
+        Intent intent = new Intent(CreateEventDetail.this, MainActivity.class);
+        startActivity(intent);
     }
 }

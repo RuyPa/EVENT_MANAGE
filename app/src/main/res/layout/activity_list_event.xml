@@ -8,6 +8,119 @@
     tools:context=".ListEventView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/textbox"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Confirm to delete this event"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/yesbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/red_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textbox">
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Yes"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nobox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/border_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textbox">
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="No"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/event"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,33 +130,58 @@
             android:id="@+id/all_event_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/event_image"
-                android:layout_width="350dp"
-                android:layout_height="171dp"
-                android:src="@drawable/tthnqg"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="@id/function"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imgbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="31dp"
+                app:layout_constraintBottom_toTopOf="@id/function"
                 app:layout_constraintLeft_toLeftOf="@id/function"
-                app:layout_constraintBottom_toTopOf="@id/function"/>
+                app:layout_constraintRight_toRightOf="@id/function">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="350dp"
+                    android:layout_height="175dp"
+                    android:clipToOutline="true"
+                    tools:ignore="MissingConstraints">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="350dp"
+                        android:layout_height="175dp"
+                        android:clipToOutline="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/choose_file"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circular" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/function"
                 android:layout_width="match_parent"
-                android:layout_height="146dp"
-                android:layout_marginRight="30dp"
+                android:layout_height="160dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/white_border_bottom"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:background="@drawable/white_border_bottom">
+                app:layout_constraintRight_toRightOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line"
@@ -68,7 +206,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Schedule" />
+                            android:text="Lịch trình" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -90,7 +228,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Task" />
+                            android:text="Nhiệm vụ" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -111,10 +249,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Guest" />
+                            android:text="Khách" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/moreArea"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.2"
@@ -132,7 +271,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="More" />
+                            android:text="Khác" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -141,6 +280,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="Event of Duy"
                     android:textColor="#08C4EC"
                     android:textSize="25dp"
@@ -148,15 +288,73 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <!--                <TextView-->
+                <!--                    android:id="@+id/event_time"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="33dp"-->
+                <!--                    android:text="Tue, Feb 27 2024 at 11:55 am"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/event_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="33dp"
-                    android:text="Tue, Feb 27 2024 at 11:55 am"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/event_name">
+
+                    <ImageView
+                        android:id="@+id/timeicon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/timee"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/datetimetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Tue, Feb 27 2024 at 11:55 am"
+                        app:layout_constraintLeft_toRightOf="@id/timeicon"
+                        app:layout_constraintTop_toTopOf="@id/timeicon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_time">
+
+                    <ImageView
+                        android:id="@+id/locationicon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/location"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/locationtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="trung tam oi nghi quoc gia"
+                        app:layout_constraintLeft_toRightOf="@id/locationicon"
+                        app:layout_constraintTop_toTopOf="@id/locationicon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/line"
@@ -166,7 +364,7 @@
                     android:src="@drawable/line"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/event_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/location" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

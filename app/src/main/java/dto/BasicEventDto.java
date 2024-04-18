@@ -13,25 +13,18 @@ public class BasicEventDto implements Serializable {
     Date startDate;
     String startTime;
     String imgUrl;
+    String location;
 
-    public void setId(Integer id) {
+    public BasicEventDto(Integer id, String name, Date startDate, String startTime, String imgUrl, String location) {
         this.id = id;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setStartDate(Date startDate) {
         this.startDate = startDate;
-    }
-
-    public void setStartTime(String startTime) {
         this.startTime = startTime;
+        this.imgUrl = imgUrl;
+        this.location = location;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public BasicEventDto() {
     }
 
     public Integer getId() {
@@ -54,14 +47,31 @@ public class BasicEventDto implements Serializable {
         return imgUrl;
     }
 
-    public BasicEventDto(Integer id, String name, Date startDate, String startTime, String imgUrl) {
+    public String getLocation() {
+        return location;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
+    }
+
+    public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 
-    public BasicEventDto() {
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
