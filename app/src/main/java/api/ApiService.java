@@ -6,6 +6,7 @@ import java.util.List;
 import dto.BasicEventDto;
 import dto.CategoryDto;
 import dto.EventDto;
+import dto.ScheduleDto;
 import dto.TestDto;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -35,4 +36,7 @@ public interface ApiService {
 
     @PUT("/api/v1/events")
     Call<ResponseBody> updateEvent(@Body RequestBody requestBody);
+
+    @GET("api/v1/schedules/event")
+    Call<List<ScheduleDto>> getScheduleByEventId(@Query("eventId") Integer eventId);
 }

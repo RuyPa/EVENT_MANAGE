@@ -44,421 +44,431 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
+            <ListView
+                android:id="@+id/list_schedule_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:divider="#00000000"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+<!--            <ScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
 
-                            <TextView
-                                android:id="@+id/textView22"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="60dp"
-                                android:text="4 - 10 March"
-                                android:textColor="#AFAFAF"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="10dp">-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
+<!--                            <TextView-->
+<!--                                android:id="@+id/textView22"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="60dp"-->
+<!--                                android:text="4 - 10 March"-->
+<!--                                android:textColor="#AFAFAF"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent" />-->
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/thungaythang"
-                                android:layout_width="50dp"
-                                android:layout_height="wrap_content">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:orientation="horizontal">-->
 
-                                <TextView
-                                    android:id="@+id/textView20"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Wed"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/thungaythang"-->
+<!--                                android:layout_width="50dp"-->
+<!--                                android:layout_height="wrap_content">-->
 
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginBottom="32dp"
-                                    android:background="@drawable/circle"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/textView20">
+<!--                                <TextView-->
+<!--                                    android:id="@+id/textView20"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="Wed"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                                    <TextView
-                                        android:id="@+id/textView21"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="6"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-                                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginBottom="32dp"-->
+<!--                                    android:background="@drawable/circle"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toBottomOf="@id/textView20">-->
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/textView21"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:text="6"-->
+<!--                                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                                        app:layout_constraintTop_toTopOf="parent" />-->
+<!--                                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent">
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content">-->
 
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:id="@+id/khoihanhid"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border_gray">
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="24dp"
-                                            android:layout_marginEnd="24dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:orientation="vertical"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent">
+<!--                                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                        android:id="@+id/khoihanhid"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginTop="10dp"-->
+<!--                                        android:background="@drawable/border_gray">-->
 
-                                            <TextView
-                                                android:id="@+id/thamgiatext"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Khởi hành"
-                                                android:textStyle="bold" />
+<!--                                        <LinearLayout-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginStart="24dp"-->
+<!--                                            android:layout_marginEnd="24dp"-->
+<!--                                            android:layout_marginBottom="10dp"-->
+<!--                                            android:orientation="vertical"-->
+<!--                                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent">-->
 
-                                            <TextView
-                                                android:id="@+id/gioptich"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="06:00 - 07:00" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/thamgiatext"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:text="Khởi hành"-->
+<!--                                                android:textStyle="bold" />-->
 
-                                            <TextView
-                                                android:id="@+id/textView25"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="Học viện công nghệ bưu chính viễn thông" />
-                                        </LinearLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/gioptich"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="06:00 - 07:00" />-->
 
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/textView25"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="Học viện công nghệ bưu chính viễn thông" />-->
+<!--                                        </LinearLayout>-->
 
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border_gray">
+<!--                                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="24dp"
-                                            android:layout_marginEnd="24dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:orientation="vertical"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent">
+<!--                                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_marginTop="10dp"-->
+<!--                                        android:background="@drawable/border_gray">-->
 
-                                            <TextView
-                                                android:id="@+id/thamdutext"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Tham dự hội nghị"
-                                                android:textStyle="bold" />
+<!--                                        <LinearLayout-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginStart="24dp"-->
+<!--                                            android:layout_marginEnd="24dp"-->
+<!--                                            android:layout_marginBottom="10dp"-->
+<!--                                            android:orientation="vertical"-->
+<!--                                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent">-->
 
-                                            <TextView
-                                                android:id="@+id/thamgiatime"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="08:00 - 11:00" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/thamdutext"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:text="Tham dự hội nghị"-->
+<!--                                                android:textStyle="bold" />-->
 
-                                            <TextView
-                                                android:id="@+id/tttext"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="Trung tâm hội nghị quốc gia" />
-                                        </LinearLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/thamgiatime"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="08:00 - 11:00" />-->
 
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/tttext"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="Trung tâm hội nghị quốc gia" />-->
+<!--                                        </LinearLayout>-->
 
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border_gray">
+<!--                                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="24dp"
-                                            android:layout_marginEnd="24dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:orientation="vertical"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent">
+<!--                                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginTop="10dp"-->
+<!--                                        android:background="@drawable/border_gray">-->
 
-                                            <TextView
-                                                android:id="@+id/ptichtext"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Phân tích vấn đề và viết báo cáo"
-                                                android:textStyle="bold" />
+<!--                                        <LinearLayout-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginStart="24dp"-->
+<!--                                            android:layout_marginEnd="24dp"-->
+<!--                                            android:layout_marginBottom="10dp"-->
+<!--                                            android:orientation="vertical"-->
+<!--                                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent">-->
 
-                                            <TextView
-                                                android:id="@+id/ptichtext2"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="12:00" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/ptichtext"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:text="Phân tích vấn đề và viết báo cáo"-->
+<!--                                                android:textStyle="bold" />-->
 
-                                            <TextView
-                                                android:id="@+id/nhanghitext"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="Nhà nghỉ tại trung tâm hội nghị quốc gia" />
-                                        </LinearLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/ptichtext2"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="12:00" />-->
 
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/nhanghitext"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="Nhà nghỉ tại trung tâm hội nghị quốc gia" />-->
+<!--                                        </LinearLayout>-->
 
-                                    <ImageView
-                                        android:id="@+id/imageView8"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/dotline" />
+<!--                                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                </LinearLayout>
+<!--                                    <ImageView-->
+<!--                                        android:id="@+id/imageView8"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:src="@drawable/dotline" />-->
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                </LinearLayout>-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent">-->
 
-                        </LinearLayout>
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+<!--                        </LinearLayout>-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/thu"
-                                android:layout_width="50dp"
-                                android:layout_height="wrap_content">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
 
-                                <TextView
-                                    android:id="@+id/thutext"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Thu"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/thu"-->
+<!--                                android:layout_width="50dp"-->
+<!--                                android:layout_height="wrap_content">-->
 
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginBottom="32dp"
-                                    android:background="@drawable/circle"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/thutext">
+<!--                                <TextView-->
+<!--                                    android:id="@+id/thutext"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="Thu"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                                    <TextView
-                                        android:id="@+id/sixtext"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="6"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-                                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginBottom="32dp"-->
+<!--                                    android:background="@drawable/circle"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toBottomOf="@id/thutext">-->
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/sixtext"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:text="6"-->
+<!--                                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                                        app:layout_constraintTop_toTopOf="parent" />-->
+<!--                                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent">
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content">-->
+
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
 
 
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border_gray">
+<!--                                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginTop="10dp"-->
+<!--                                        android:background="@drawable/border_gray">-->
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="24dp"
-                                            android:layout_marginEnd="24dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:orientation="vertical"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent">
+<!--                                        <LinearLayout-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginStart="24dp"-->
+<!--                                            android:layout_marginEnd="24dp"-->
+<!--                                            android:layout_marginBottom="10dp"-->
+<!--                                            android:orientation="vertical"-->
+<!--                                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent">-->
 
-                                            <TextView
-                                                android:id="@+id/ptichtitle"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Phân tích vấn đề và viết báo cáo"
-                                                android:textStyle="bold" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/ptichtitle"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:text="Phân tích vấn đề và viết báo cáo"-->
+<!--                                                android:textStyle="bold" />-->
 
-                                            <TextView
-                                                android:id="@+id/ptich1"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="tới 16:00" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/ptich1"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="tới 16:00" />-->
 
-                                            <TextView
-                                                android:id="@+id/ddd"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="Nhà nghỉ tại trung tâm hội nghị quốc gia" />
-                                        </LinearLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/ddd"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="Nhà nghỉ tại trung tâm hội nghị quốc gia" />-->
+<!--                                        </LinearLayout>-->
 
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:id="@+id/newSchedule"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border_gray"
-                                        android:visibility="visible">
+<!--                                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                        android:id="@+id/newSchedule"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_marginTop="10dp"-->
+<!--                                        android:background="@drawable/border_gray"-->
+<!--                                        android:visibility="visible">-->
 
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="24dp"
-                                            android:layout_marginEnd="24dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:orientation="vertical"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent">
+<!--                                        <LinearLayout-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginStart="24dp"-->
+<!--                                            android:layout_marginEnd="24dp"-->
+<!--                                            android:layout_marginBottom="10dp"-->
+<!--                                            android:orientation="vertical"-->
+<!--                                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent">-->
 
-                                            <TextView
-                                                android:id="@+id/handtext"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Nộp báo cáo"
-                                                android:textStyle="bold" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/handtext"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:text="Nộp báo cáo"-->
+<!--                                                android:textStyle="bold" />-->
 
-                                            <TextView
-                                                android:id="@+id/handtime"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="05:00" />
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/handtime"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="05:00" />-->
 
-                                            <TextView
-                                                android:id="@+id/handlocation"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:text="Nhà nghỉ trung tâm hội nghị quốc gia" />
-                                        </LinearLayout>
+<!--                                            <TextView-->
+<!--                                                android:id="@+id/handlocation"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginTop="5dp"-->
+<!--                                                android:fontFamily="sans-serif-medium"-->
+<!--                                                android:text="Nhà nghỉ trung tâm hội nghị quốc gia" />-->
+<!--                                        </LinearLayout>-->
 
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/dotline" />
+<!--                                    <ImageView-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:src="@drawable/dotline" />-->
 
-                                </LinearLayout>
+<!--                                </LinearLayout>-->
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent">-->
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </ScrollView>
+<!--                        </LinearLayout>-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
+<!--            </ScrollView>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

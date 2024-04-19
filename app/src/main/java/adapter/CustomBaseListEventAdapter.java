@@ -131,7 +131,7 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
         clickToSeeDetail(convertView, position);
 
 
-        clickScheduleIcon(convertView);
+        clickScheduleIcon(convertView, position);
 
         clickTaskIcon(convertView);
 
@@ -202,15 +202,14 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
         });
     }
 
-    private void clickScheduleIcon(View convertView) {
+    private void clickScheduleIcon(View convertView, Integer position) {
         LinearLayout scheduleIcon = convertView.findViewById(R.id.schedule_linear);
         scheduleIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent to start a new activity
                 Intent intent = new Intent(context, ScheduleManage.class);
                 // You can also put extra data into the intent if needed
-                // intent.putExtra("key", "value");
+                 intent.putExtra("eventId", eventId.get(position));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
