@@ -27,6 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ScheduleManage extends AppCompatActivity {
+    private Integer eventId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,9 @@ public class ScheduleManage extends AppCompatActivity {
 
     private void fetchDateFromAPI() {
 
-        Integer eventId = (Integer) getIntent().getIntExtra("eventId", 0);
+        eventId = (Integer) getIntent().getIntExtra("eventId", 0);
+        Log.i("Joke eventId", "onCreate2: " + eventId);
+
 
         fixDelay();
 
@@ -64,7 +67,7 @@ public class ScheduleManage extends AppCompatActivity {
                 // Set adapter here inside onResponse
                 ListView listView = findViewById(R.id.list_schedule_view);
 //                CustomBaseListEventAdapter adapter = new CustomBaseListEventAdapter(getApplicationContext(), eventDtoList);
-                CustomBaseListScheduleAdapter adapter = new CustomBaseListScheduleAdapter(ScheduleManage.this, scheduleDtos );
+                CustomBaseListScheduleAdapter adapter = new CustomBaseListScheduleAdapter(ScheduleManage.this, scheduleDtos, eventId );
                 listView.setAdapter(adapter);
             }
 
@@ -112,6 +115,7 @@ public class ScheduleManage extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(ScheduleManage.this, CreateSchedule.class);
+                intent.putExtra("eventId", eventId);
                 startActivity(intent);
             }
         });

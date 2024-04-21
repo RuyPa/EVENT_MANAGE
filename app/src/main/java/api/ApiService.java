@@ -39,4 +39,17 @@ public interface ApiService {
 
     @GET("api/v1/schedules/event")
     Call<List<ScheduleDto>> getScheduleByEventId(@Query("eventId") Integer eventId);
+
+    @GET("api/v1/schedules")
+    Call<ScheduleDto> getScheduleById(@Query("id") Integer scheduleId);
+
+    @POST("api/v1/schedules")
+    Call<ResponseBody> createSchedule(@Body RequestBody requestBody);
+
+    @DELETE("api/v1/schedules")
+    Call<ResponseBody> deleteSchedule(@Query("id") Integer scheduleId);
+
+    @PUT("api/v1/schedules")
+    Call<ResponseBody> updateSchedule(@Body RequestBody requestBody);
+
 }

@@ -209,7 +209,8 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ScheduleManage.class);
                 // You can also put extra data into the intent if needed
-                 intent.putExtra("eventId", eventId.get(position));
+                intent.putExtra("eventId", eventId.get(position));
+                Log.i("Joke eventId", "onCreate1: " + eventId.get(position));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

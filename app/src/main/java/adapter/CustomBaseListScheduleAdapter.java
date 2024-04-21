@@ -3,6 +3,7 @@ package adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.app_test.R;
+import com.example.app_test.ScheduleDetail;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -31,9 +33,11 @@ import dto.ScheduleDto;
 
 public class CustomBaseListScheduleAdapter extends BaseAdapter {
 
+    private final Integer eventId;
     private Context context;
     private LayoutInflater layoutInflater;
     private Activity activity;
+    private List<Integer> idList;
     private List<String> nameList;
     private List<Date> startDateList;
     private List<Date> endDateList;
@@ -60,8 +64,12 @@ public class CustomBaseListScheduleAdapter extends BaseAdapter {
         return 0;
     }
 
-    public CustomBaseListScheduleAdapter(Activity activity, List<ScheduleDto> scheduleDtos) {
+    public CustomBaseListScheduleAdapter(Activity activity, List<ScheduleDto> scheduleDtos, Integer eventId) {
         this.scheduleDtos = scheduleDtos;
+        this.eventId = eventId;
+        this.idList = scheduleDtos.stream()
+                .map(ScheduleDto::getId)
+                .collect(Collectors.toList());
         this.nameList = scheduleDtos.stream()
                 .map(ScheduleDto::getName)
                 .collect(Collectors.toList());
@@ -145,32 +153,39 @@ public class CustomBaseListScheduleAdapter extends BaseAdapter {
         TextView date = (TextView) convertView.findViewById(R.id.textView21);
 
         checkFirstDayOfWeek(position, weekBox, startDate, day, date, dateBox);
-        if (weekBox.getVisibility() == View.GONE) {
-            if(startDate!= null){
-                setDateAndDay(dateBox, weekBox, day, date, startDate);
-            } else {
-                setDateAndDay(dateBox, weekBox, day, date, endDate);
-            }
-        }
+        checkFirstScheduleOfDay(startDate, endDate, dateBox, weekBox, day, date);
+        checkLastScheduleOfDay(position, startDate, endDate, lineBox);
+
+        onClickSeeDetail(convertView, position);
+
+        return convertView;
+    }
+
+    private void checkLastScheduleOfDay(int position, Date startDate, Date endDate, ImageView lineBox) {
         if(position == nameList.size() - 1){
             lineBox.setVisibility(View.VISIBLE);
         } else {
                 String currentDate = "";
-                if(startDate!= null) currentDate = startDate.toString().split(" ")[2];
+                if(startDate != null) currentDate = startDate.toString().split(" ")[2];
                 else currentDate = endDate.toString().split(" ")[2];
                 String followingDate = "";
-                if(startDateList.get(position+ 1)!= null) followingDate = startDateList.get(position + 1).toString().split(" ")[2];
+                if(startDateList.get(position + 1)!= null) followingDate = startDateList.get(position + 1).toString().split(" ")[2];
                 else followingDate = endDateList.get(position + 1).toString().split(" ")[2];
-                Log.i("Joke date", "getView1: " + followingDate);
-                Log.i("Joke date", "getView2: " + currentDate);
 
             if(!currentDate.equals(followingDate)){
                     lineBox.setVisibility(View.VISIBLE);
                 }
         }
+    }
 
-
-        return convertView;
+    private void checkFirstScheduleOfDay(Date startDate, Date endDate, ConstraintLayout dateBox, TextView weekBox, TextView day, TextView date) {
+        if (weekBox.getVisibility() == View.GONE) {
+            if(startDate != null){
+                setDateAndDay(dateBox, weekBox, day, date, startDate);
+            } else {
+                setDateAndDay(dateBox, weekBox, day, date, endDate);
+            }
+        }
     }
 
     private String checkTime(String startTime, String endTime) {
@@ -249,5 +264,19 @@ public class CustomBaseListScheduleAdapter extends BaseAdapter {
     }
 
     private void onClickSeeDetail(View convertView, int position) {
+        Integer scheduleId = idList.get(position);
+        ConstraintLayout scheduleBox = (ConstraintLayout) convertView.findViewById(R.id.schedulebox);
+
+        scheduleBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ScheduleDetail.class);
+                Log.i("Joke last", "onClick: "+ String.valueOf(idList.get(position)));
+                intent.putExtra("scheduleId", idList.get(position));
+                intent.putExtra("eventId", eventId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 }

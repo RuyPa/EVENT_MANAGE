@@ -46,7 +46,8 @@
                             android:id="@+id/time1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="10dp"
+                            android:visibility="visible">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/time11"
@@ -91,7 +92,8 @@
                             android:id="@+id/time2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="10dp"
+                            android:visibility="visible">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/time21"
@@ -136,7 +138,8 @@
                             android:id="@+id/time3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="10dp"
+                            android:visibility="visible">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/time31"
