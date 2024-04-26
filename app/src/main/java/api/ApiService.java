@@ -7,6 +7,7 @@ import dto.BasicEventDto;
 import dto.CategoryDto;
 import dto.EventDto;
 import dto.ScheduleDto;
+import dto.TaskDto;
 import dto.TestDto;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -51,5 +52,11 @@ public interface ApiService {
 
     @PUT("api/v1/schedules")
     Call<ResponseBody> updateSchedule(@Body RequestBody requestBody);
+
+    @GET("api/v1/tasks/event")
+    Call<List<TaskDto>> getTaskByEventId(@Query("eventId") Integer eventId);
+
+    @PUT("api/v1/tasks/update-checked")
+    Call<ResponseBody> updateChecked(@Body RequestBody requestBody);
 
 }

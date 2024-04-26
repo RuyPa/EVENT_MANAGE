@@ -45,459 +45,469 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headnav">
 
-        <ScrollView
+        <ListView
+            android:id="@+id/list_task_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:divider="#00000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
 
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/box1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="31dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="31dp"
-                        android:background="@drawable/white_border_shadow"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="54dp"
-                            android:layout_marginBottom="30dp"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/time1"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingTop="30dp">
-
-                                <ImageView
-                                    android:id="@+id/imageView9"
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/checkmark"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="40dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    app:layout_constraintLeft_toRightOf="@id/imageView9"
-                                    app:layout_constraintRight_toLeftOf="@id/imageView10"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <TextView
-                                        android:id="@+id/textView16"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-medium"
-                                        android:text="Buy candies"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/textView24"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="12:00 PM"
-                                        android:textColor="#AFAFAF"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:id="@+id/imageView10"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:src="@drawable/more"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/time1"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/time2"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingTop="30dp">
-
-                                <ImageView
-                                    android:id="@+id/check2"
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/square"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="40dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    app:layout_constraintLeft_toRightOf="@id/check2"
-                                    app:layout_constraintRight_toLeftOf="@id/more2"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <TextView
-                                        android:id="@+id/supti"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-medium"
-                                        android:text="Meet supplier"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/suptex"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="17:00 PM"
-                                        android:textColor="#AFAFAF"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:id="@+id/more2"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:src="@drawable/more"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/time2"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/time3"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingTop="30dp">
-
-                                <ImageView
-                                    android:id="@+id/check3"
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/square"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="40dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    app:layout_constraintLeft_toRightOf="@id/check3"
-                                    app:layout_constraintRight_toLeftOf="@id/more3"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <TextView
-                                        android:id="@+id/deti"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-medium"
-                                        android:text="Decorate car"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/detext"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="22:00 PM"
-                                        android:textColor="#AFAFAF"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:id="@+id/more3"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:src="@drawable/more"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/time3"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/editbox"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="0dp"
-                                android:paddingTop="30dp">
-
-                                <ImageView
-                                    android:id="@+id/checkt4"
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/checkmark"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="40dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    app:layout_constraintLeft_toRightOf="@id/checkt4"
-                                    app:layout_constraintRight_toLeftOf="@id/more4"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <TextView
-                                        android:id="@+id/chechtext"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-medium"
-                                        android:text="Check task"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:id="@+id/more4"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:src="@drawable/more"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/editbox"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/cleanBox1"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingTop="30dp"
-                                android:visibility="visible">
-
-                                <ImageView
-                                    android:id="@+id/check5"
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/square"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="40dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    app:layout_constraintLeft_toRightOf="@id/check5"
-                                    app:layout_constraintRight_toLeftOf="@id/cleanMoreBtn"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <TextView
-                                        android:id="@+id/gettext"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-medium"
-                                        android:text="Clean the car"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:id="@+id/cleanMoreBtn"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:src="@drawable/more"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/cleanBox1"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/orangerborder1"
-                        android:layout_width="match_parent"
-                        android:layout_height="59dp"
-                        android:layout_marginLeft="31dp"
-                        android:layout_marginRight="31dp"
-                        android:background="@drawable/orange_border_top"
-                        app:layout_constraintLeft_toLeftOf="@id/box1"
-                        app:layout_constraintRight_toRightOf="@id/box1"
-                        app:layout_constraintTop_toTopOf="@id/box1">
-
-                        <TextView
-                            android:id="@+id/textView266"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="Today, 2024 -03 -04"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent">-->
 
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/box2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="31dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="31dp"
-                        android:background="@drawable/white_border_shadow"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/box1"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="31dp"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_marginEnd="31dp"-->
+<!--                        android:background="@drawable/white_border_shadow"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="54dp"
-                            android:layout_marginBottom="30dp"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="54dp"-->
+<!--                            android:layout_marginBottom="30dp"-->
+<!--                            android:orientation="vertical"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent">-->
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/time12"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="30dp">
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/time1"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:paddingTop="30dp">-->
 
-                                <ImageView
-                                    android:id="@+id/check12"
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/square"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/imageView9"-->
+<!--                                    android:layout_width="26dp"-->
+<!--                                    android:layout_height="26dp"-->
+<!--                                    android:layout_marginStart="20dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/checkmark"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="40dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    app:layout_constraintLeft_toRightOf="@id/check12"
-                                    app:layout_constraintRight_toLeftOf="@id/more12"
-                                    app:layout_constraintTop_toTopOf="parent">
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginLeft="40dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintLeft_toRightOf="@id/imageView9"-->
+<!--                                    app:layout_constraintRight_toLeftOf="@id/imageView10"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
 
-                                    <TextView
-                                        android:id="@+id/gotext"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-medium"
-                                        android:text="Go party to get infor"
-                                        android:textSize="16sp" />
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/textView16"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:fontFamily="sans-serif-medium"-->
+<!--                                        android:text="Buy candies"-->
+<!--                                        android:textSize="16sp" />-->
 
-                                    <TextView
-                                        android:id="@+id/gotime"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="06:00 PM"
-                                        android:textColor="#AFAFAF"
-                                        android:textSize="16sp" />
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/textView24"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:text="12:00 PM"-->
+<!--                                        android:textColor="#AFAFAF"-->
+<!--                                        android:textSize="16sp" />-->
 
-                                </LinearLayout>
+<!--                                </LinearLayout>-->
 
-                                <ImageView
-                                    android:id="@+id/more12"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:src="@drawable/more"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintRight_toRightOf="@id/time12"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/imageView10"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginEnd="15dp"-->
+<!--                                    android:src="@drawable/more"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="@id/time1"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/time2"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:paddingTop="30dp">-->
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/redrborder"
-                        android:layout_width="match_parent"
-                        android:layout_height="59dp"
-                        android:layout_marginLeft="31dp"
-                        android:layout_marginRight="31dp"
-                        android:background="@drawable/red_border_top"
-                        app:layout_constraintLeft_toLeftOf="@id/box2"
-                        app:layout_constraintRight_toRightOf="@id/box2"
-                        app:layout_constraintTop_toTopOf="@id/box2">
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/check2"-->
+<!--                                    android:layout_width="26dp"-->
+<!--                                    android:layout_height="26dp"-->
+<!--                                    android:layout_marginStart="20dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/square"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                        <TextView
-                            android:id="@+id/textView27"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="Tomorrow, 2024 - 03 -05"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginLeft="40dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintLeft_toRightOf="@id/check2"-->
+<!--                                    app:layout_constraintRight_toLeftOf="@id/more2"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/supti"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:fontFamily="sans-serif-medium"-->
+<!--                                        android:text="Meet supplier"-->
+<!--                                        android:textSize="16sp" />-->
 
-            </LinearLayout>
-        </ScrollView>
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/suptex"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:text="17:00 PM"-->
+<!--                                        android:textColor="#AFAFAF"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                </LinearLayout>-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/more2"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginEnd="15dp"-->
+<!--                                    android:src="@drawable/more"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="@id/time2"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/time3"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:paddingTop="30dp">-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/check3"-->
+<!--                                    android:layout_width="26dp"-->
+<!--                                    android:layout_height="26dp"-->
+<!--                                    android:layout_marginStart="20dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/square"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginLeft="40dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintLeft_toRightOf="@id/check3"-->
+<!--                                    app:layout_constraintRight_toLeftOf="@id/more3"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/deti"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:fontFamily="sans-serif-medium"-->
+<!--                                        android:text="Decorate car"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/detext"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:text="22:00 PM"-->
+<!--                                        android:textColor="#AFAFAF"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                </LinearLayout>-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/more3"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginEnd="15dp"-->
+<!--                                    android:src="@drawable/more"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="@id/time3"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/editbox"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:layout_marginTop="0dp"-->
+<!--                                android:paddingTop="30dp">-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/checkt4"-->
+<!--                                    android:layout_width="26dp"-->
+<!--                                    android:layout_height="26dp"-->
+<!--                                    android:layout_marginStart="20dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/checkmark"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginLeft="40dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintLeft_toRightOf="@id/checkt4"-->
+<!--                                    app:layout_constraintRight_toLeftOf="@id/more4"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/chechtext"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:fontFamily="sans-serif-medium"-->
+<!--                                        android:text="Check task"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                </LinearLayout>-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/more4"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginEnd="15dp"-->
+<!--                                    android:src="@drawable/more"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="@id/editbox"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/cleanBox1"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:paddingTop="30dp"-->
+<!--                                android:visibility="visible">-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/check5"-->
+<!--                                    android:layout_width="26dp"-->
+<!--                                    android:layout_height="26dp"-->
+<!--                                    android:layout_marginStart="20dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/square"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginLeft="40dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintLeft_toRightOf="@id/check5"-->
+<!--                                    app:layout_constraintRight_toLeftOf="@id/cleanMoreBtn"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/gettext"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:fontFamily="sans-serif-medium"-->
+<!--                                        android:text="Clean the car"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                </LinearLayout>-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/cleanMoreBtn"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginEnd="15dp"-->
+<!--                                    android:src="@drawable/more"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="@id/cleanBox1"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                        </LinearLayout>-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/orangerborder1"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="59dp"-->
+<!--                        android:layout_marginLeft="31dp"-->
+<!--                        android:layout_marginRight="31dp"-->
+<!--                        android:background="@drawable/orange_border_top"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@id/box1"-->
+<!--                        app:layout_constraintRight_toRightOf="@id/box1"-->
+<!--                        app:layout_constraintTop_toTopOf="@id/box1">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView266"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="sans-serif-medium"-->
+<!--                            android:text="Today, 2024 -03 -04"-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="16sp"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent">-->
+
+
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/box2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="31dp"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_marginEnd="31dp"-->
+<!--                        android:background="@drawable/white_border_shadow"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="54dp"-->
+<!--                            android:layout_marginBottom="30dp"-->
+<!--                            android:orientation="vertical"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                                android:id="@+id/time12"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:layout_marginTop="30dp">-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/check12"-->
+<!--                                    android:layout_width="26dp"-->
+<!--                                    android:layout_height="26dp"-->
+<!--                                    android:layout_marginStart="20dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/square"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginLeft="40dp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:orientation="vertical"-->
+<!--                                    app:layout_constraintLeft_toRightOf="@id/check12"-->
+<!--                                    app:layout_constraintRight_toLeftOf="@id/more12"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/gotext"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:fontFamily="sans-serif-medium"-->
+<!--                                        android:text="Go party to get infor"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/gotime"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:text="06:00 PM"-->
+<!--                                        android:textColor="#AFAFAF"-->
+<!--                                        android:textSize="16sp" />-->
+
+<!--                                </LinearLayout>-->
+
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/more12"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:layout_marginEnd="15dp"-->
+<!--                                    android:src="@drawable/more"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="@id/time12"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                        </LinearLayout>-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/redrborder"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="59dp"-->
+<!--                        android:layout_marginLeft="31dp"-->
+<!--                        android:layout_marginRight="31dp"-->
+<!--                        android:background="@drawable/red_border_top"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@id/box2"-->
+<!--                        app:layout_constraintRight_toRightOf="@id/box2"-->
+<!--                        app:layout_constraintTop_toTopOf="@id/box2">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView27"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="sans-serif-medium"-->
+<!--                            android:text="Tomorrow, 2024 - 03 -05"-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="16sp"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

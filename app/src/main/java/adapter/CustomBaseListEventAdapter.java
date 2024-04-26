@@ -133,7 +133,7 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
 
         clickScheduleIcon(convertView, position);
 
-        clickTaskIcon(convertView);
+        clickTaskIcon(convertView, position);
 
         onClickMore(convertView, position);
 //
@@ -187,7 +187,7 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
         });
     }
 
-    private void clickTaskIcon(View convertView) {
+    private void clickTaskIcon(View convertView, Integer position) {
         LinearLayout taskLinear = convertView.findViewById(R.id.task_linear);
         taskLinear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +195,7 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
                 // Intent to start a new activity
                 Intent intent = new Intent(context, TaskManage.class);
                 // You can also put extra data into the intent if needed
-                // intent.putExtra("key", "value");
+                intent.putExtra("eventId", eventId.get(position));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -210,7 +210,6 @@ public class CustomBaseListEventAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, ScheduleManage.class);
                 // You can also put extra data into the intent if needed
                 intent.putExtra("eventId", eventId.get(position));
-                Log.i("Joke eventId", "onCreate1: " + eventId.get(position));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
