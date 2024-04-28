@@ -56,7 +56,19 @@ public interface ApiService {
     @GET("api/v1/tasks/event")
     Call<List<TaskDto>> getTaskByEventId(@Query("eventId") Integer eventId);
 
+    @GET("api/v1/tasks")
+    Call<TaskDto> getTaskById(@Query("id") Integer id);
+
     @PUT("api/v1/tasks/update-checked")
     Call<ResponseBody> updateChecked(@Body RequestBody requestBody);
+
+    @POST("api/v1/tasks")
+    Call<ResponseBody> createTask(@Body RequestBody requestBody);
+
+    @DELETE("api/v1/tasks")
+    Call<ResponseBody> deleteTask(@Query("id") Integer id);
+
+    @PUT("api/v1/tasks")
+    Call<ResponseBody> updateTask(@Body RequestBody requestBody);
 
 }

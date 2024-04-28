@@ -18,7 +18,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Task"
+            android:text="Chi tiết nhiệm vụ"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +105,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:hint="điền vào đây"
                             android:background="@null"
-                            android:id="@+id/textView23"
+                            android:id="@+id/titleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -165,7 +165,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
-                            android:text="Lịch"
+                            android:text="Ngày"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
@@ -186,13 +186,13 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:hint="nhấn biểu tượng"
                             android:background="@null"
-                            android:id="@+id/calendartime"
+                            android:id="@+id/startDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
                             android:textSize="16dp"
                             app:layout_constraintBottom_toBottomOf="@id/fillcalendar"
-                            app:layout_constraintLeft_toLeftOf="@id/fillcalendar"
+                            app:layout_constraintLeft_toRightOf="@id/constraintLayout5"
                             app:layout_constraintRight_toRightOf="@id/fillcalendar"
                             app:layout_constraintTop_toBottomOf="@id/calendarline"
                             tools:ignore="NotSibling" />
@@ -269,13 +269,13 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:hint="nhấn biểu tượng"
                             android:background="@null"
-                            android:id="@+id/timetext"
+                            android:id="@+id/startTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
                             android:textSize="16dp"
                             app:layout_constraintBottom_toBottomOf="@id/fillstarttime"
-                            app:layout_constraintLeft_toLeftOf="@id/fillstarttime"
+                            app:layout_constraintLeft_toRightOf="@id/linepo"
                             app:layout_constraintRight_toRightOf="@id/fillstarttime"
                             app:layout_constraintTop_toBottomOf="@id/startline"
                             tools:ignore="NotSibling" />
@@ -334,7 +334,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/destext"
+                            android:id="@+id/desText"
                             android:hint="điền vào đây"
                             android:background="@null"
                             android:layout_width="wrap_content"
@@ -348,39 +348,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/createBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:visibility="visible">
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/create_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="31dp"
-                        android:layout_marginEnd="31dp"
-                        android:background="@drawable/orange_border_shadow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <TextView
-                        android:id="@+id/createeventntext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tạo nhiệm vụ"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@id/create_button"
-                        app:layout_constraintLeft_toLeftOf="@id/create_button"
-                        app:layout_constraintRight_toRightOf="@id/create_button"
-                        app:layout_constraintTop_toTopOf="@id/create_button" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/updatebox"

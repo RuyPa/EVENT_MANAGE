@@ -43,8 +43,8 @@ public class TaskManage extends AppCompatActivity {
 //        onClickYes();
 //
         onClickBack();
-//
-//        onclickCreate();
+
+        onclickCreate();
 //
 //        showNewTask();
 //
@@ -54,7 +54,6 @@ public class TaskManage extends AppCompatActivity {
     private void fetchDateFromAPI() {
         eventId = (Integer) getIntent().getIntExtra("eventId", 0);
         Log.i("Joke eventId", "onCreate2: " + eventId);
-
 
         fixDelay();
 
@@ -88,17 +87,18 @@ public class TaskManage extends AppCompatActivity {
                 .build();
     }
 
-//    private void onclickCreate() {
-//        ImageView addEventIcon = findViewById(R.id.creatTask);
-//        addEventIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(TaskManage.this, CreateTask.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//
+    private void onclickCreate() {
+        ImageView addEventIcon = findViewById(R.id.creatTask);
+        addEventIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskManage.this, CreateTask.class);
+                intent.putExtra("eventId", eventId);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void onClickBack(){
         ImageView backEventIcon = findViewById(R.id.backiconcreateschedule);
         backEventIcon.setOnClickListener(new View.OnClickListener() {

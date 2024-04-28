@@ -1,19 +1,24 @@
 package adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.app_test.R;
+import com.example.app_test.TaskDetail;
 import com.example.app_test.TaskManage;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPOutputStream;
 
 import api.ApiService;
 import api.BaseAPI;
@@ -53,6 +59,9 @@ public class CustomBaseListTaskAdapter extends BaseAdapter {
     private ConstraintLayout bottomFrame;
     private ConstraintLayout headFrame;
     private int count = 0;
+    private Dialog dialog;
+    private Dialog dialogConfirm;
+    private Dialog dialogSuccess;
 
     @Override
     public int getCount() {
@@ -138,7 +147,9 @@ public class CustomBaseListTaskAdapter extends BaseAdapter {
 //        checkFirstScheduleOfDay(startDate, endDate, dateBox, weekBox, day, date);
 //        checkLastScheduleOfDay(position, startDate, endDate, lineBox);
 //
-//        onClickSeeDetail(convertView, position);
+        onClickSeeDetail(convertView, position);
+
+        onClickMore(convertView, position);
 
         return convertView;
     }
@@ -180,7 +191,6 @@ public class CustomBaseListTaskAdapter extends BaseAdapter {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.i("Joke", "onResponse: " +String.valueOf(done));
                 if (done == 1) {
                     showChecked(convertView);
                 } else {
@@ -274,5 +284,130 @@ public class CustomBaseListTaskAdapter extends BaseAdapter {
         bottomFrame.setVisibility(View.GONE);
     }
 
+    private void onClickSeeDetail(View convertView, int position) {
+        ConstraintLayout box = (ConstraintLayout) convertView.findViewById(R.id.time1);
+        box.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, TaskDetail.class);
+                intent.putExtra("taskId", idList.get(position));
+                intent.putExtra("eventId", eventId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+    }
 
+    private void onClickMore(View convertView, Integer position) {
+
+        ImageView moreButton = convertView.findViewById(R.id.more);
+        moreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showDeleteDialog();
+                    }
+
+                    private void showDeleteDialog() {
+                        dialog = new Dialog(activity);
+                        dialog.setContentView(R.layout.event_more_action);
+                        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        dialog.getWindow().setBackgroundDrawable(Drawable.createFromPath("drawable/card_shape.xml"));
+                        hideOthers();
+                        dialog.show();
+
+                        ConstraintLayout deleteButton = dialog.findViewById(R.id.deletebutton);
+
+                        deleteButton.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                showConfirmLayout(convertView, position);
+                            }
+
+                            private void showConfirmLayout(View convertView, Integer position) {
+                                dialogConfirm = new Dialog(activity);
+                                dialogConfirm.setContentView(R.layout.confirm_delete_action);
+                                dialogConfirm.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                dialogConfirm.getWindow().setBackgroundDrawable(Drawable.createFromPath("drawable/card_shape.xml"));
+                                dialog.dismiss();
+                                dialogConfirm.show();
+
+                                ConstraintLayout noBox = dialogConfirm.findViewById(R.id.nobox);
+                                noBox.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialogConfirm.dismiss();
+                                    }
+                                });
+
+
+                                ConstraintLayout yesBox = dialogConfirm.findViewById(R.id.yesbox);
+                                yesBox.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialogConfirm.dismiss();
+                                        callDeleteEventApi(position);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    private void hideOthers() {
+
+        ConstraintLayout option1 = dialog.findViewById(R.id.time11);
+        ConstraintLayout option2 = dialog.findViewById(R.id.time21);
+        ConstraintLayout option3 = dialog.findViewById(R.id.time31);
+        ConstraintLayout option4 = dialog.findViewById(R.id.editbox);
+
+        option1.setVisibility(View.GONE);
+        option2.setVisibility(View.GONE);
+        option3.setVisibility(View.GONE);
+        option4.setVisibility(View.GONE);
+    }
+
+    private void callDeleteEventApi(Integer position) {
+        fixDelay();
+
+        Retrofit retrofit = BaseAPI.getRetrofitInstance();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ResponseBody> call = apiService.deleteTask(idList.get(position));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                dialogSuccess = new Dialog(activity);
+                dialogSuccess.setContentView(R.layout.success);
+                dialogSuccess.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialogSuccess.getWindow().setBackgroundDrawable(Drawable.createFromPath("drawable/card_shape.xml"));
+                dialogSuccess.show();
+
+                ConstraintLayout yesBoxx = dialogSuccess.findViewById(R.id.yesbox);
+                yesBoxx.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        backToTaskManage();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("Joke", "Error fetching joke: " + t.getMessage());
+            }
+        });
+    }
+
+    private void backToTaskManage() {
+        Intent intent = new Intent(context, TaskManage.class);
+        intent.putExtra("eventId", eventId);
+        activity.startActivity(intent);
+    }
 }
